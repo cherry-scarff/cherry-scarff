@@ -5,32 +5,41 @@
   <desc id="desc">Вишнёвая пиксельная надпись в стиле терминала.</desc>
 
   <defs>
-    <!-- Глубокий темный фон -->
     <linearGradient id="background" x2="0" y2="1">
-      <stop stop-color="#070408"/>
-      <stop offset="1" stop-color="#120610"/>
+      <stop stop-color="#09080c"/>
+      <stop offset="1" stop-color="#140c13"/>
     </linearGradient>
 
-    <!-- Вертикальный градиент: от неонового верха к спелой вишне -->
-    <linearGradient id="cherry" x1="0" y1="0" x2="0" y2="1">
-      <stop stop-color="#ff7da1"/>
-      <stop offset="0.3" stop-color="#e23c67"/>
-      <stop offset="0.75" stop-color="#9a1638"/>
-      <stop offset="1" stop-color="#54051a"/>
+    <linearGradient id="cherry" gradientUnits="userSpaceOnUse"
+                    x1="0" y1="0" x2="560" y2="112">
+      <stop stop-color="#8f2044"/>
+      <stop offset=".38" stop-color="#bf365b"/>
+      <stop offset=".72" stop-color="#dd5776"/>
+      <stop offset="1" stop-color="#f38ca2"/>
     </linearGradient>
 
-    <!-- Истинный шахматный пиксельный паттерн (Dither) -->
-    <pattern id="dither" width="4" height="4" patternUnits="userSpaceOnUse">
-      <rect width="2" height="2" fill="#ffffff" opacity=".2"/>
-      <rect x="2" y="2" width="2" height="2" fill="#ffffff" opacity=".2"/>
+    <pattern id="dither" width="4" height="4"
+             patternUnits="userSpaceOnUse">
+      <rect width="1" height="1" fill="#e76587" opacity=".5"/>
+      <rect x="2" y="2" width="1" height="1"
+            fill="#e76587" opacity=".3"/>
     </pattern>
 
-    <!-- Отрегулированные пиксельные пути букв -->
-    <path id="c" d="M16 0H80V16H32V32H16V80H32V96H80V112H16V96H0V16H16Z"/>
-    <path id="h" d="M0 0H24V44H56V0H80V112H56V68H24V112H0Z"/>
-    <path id="e" d="M0 0H80V24H24V44H64V68H24V88H80V112H0Z"/>
-    <path id="r" fill-rule="evenodd" d="M0 0H64V16H80V48H64V64H48V80H64V96H80V112H48V96H32V80H24V112H0ZM24 24V44H56V24Z"/>
-    <path id="y" d="M0 0H24V32H32V48H48V32H56V0H80V48H64V64H52V112H28V64H16V48H0Z"/>
+    <path id="c"
+          d="M16 0H80V16H32V32H16V80H32V96H80V112H16V96H0V16H16Z"/>
+
+    <path id="h"
+          d="M0 0H24V44H56V0H80V112H56V68H24V112H0Z"/>
+
+    <path id="e"
+          d="M0 0H80V24H24V44H64V68H24V88H80V112H0Z"/>
+
+    <path id="r" fill-rule="evenodd"
+          d="M0 0H64V16H80V48H64V64H48V80H64V96H80V112H48V96H32V80H24V112H0Z
+             M24 24V44H56V24Z"/>
+
+    <path id="y"
+          d="M0 0H24V32H32V48H48V32H56V0H80V48H64V64H52V112H28V64H16V48H0Z"/>
 
     <g id="word">
       <use href="#c"/>
@@ -41,32 +50,28 @@
       <use href="#y" x="480"/>
     </g>
 
-    <path id="prompt" d="M0 0H16V16H32V32H48V48H32V64H16V80H0V64H16V48H32V32H16V16H0Z"/>
+    <path id="prompt"
+          d="M0 0H16V16H32V32H48V48H32V64H16V80H0V64H16V48H32V32H16V16H0Z"/>
   </defs>
 
-  <!-- Базовый контейнер -->
   <rect width="960" height="240" rx="12" fill="url(#background)"/>
-  
-  <!-- Внутренняя рамка терминала -->
-  <rect x="28.5" y="28.5" width="903" height="183" fill="#060207" stroke="#3d1829" stroke-width="2"/>
+
+  <rect x="28.5" y="28.5" width="903" height="183"
+        fill="#09080c" stroke="#553042"/>
 
   <g shape-rendering="crispEdges">
-    <!-- Слой текста и его эффектов -->
+    <!-- Пиксельная тень -->
     <g transform="translate(174 61) scale(1.2)">
-      <!-- 1. Глубокая темная подложка-тень -->
-      <use href="#word" x="6" y="8" fill="#1b020a"/>
-      <!-- 2. Пиксельная дизер-тень -->
-      <use href="#word" x="6" y="8" fill="url(#dither)" style="mix-blend-mode: overlay;"/>
-      <!-- 3. Основное тело букв с сочным вертикальным градиентом -->
+      <use href="#word" y="10" fill="#351222"/>
+      <use href="#word" y="10" fill="url(#dither)"/>
       <use href="#word" fill="url(#cherry)"/>
-      <!-- 4. Легкое пиксельное напыление поверх букв для ретро-текстуры -->
-      <use href="#word" fill="url(#dither)" opacity="0.4"/>
     </g>
 
-    <!-- Терминальный символ (>) -->
+    <!-- Терминальный символ -->
     <g transform="translate(66 80) scale(1.2)">
-      <use href="#prompt" x="4" y="6" fill="#0d1f3d"/>
-      <use href="#prompt" fill="#3b82f6"/>
+      <use href="#prompt" y="8" fill="#351222"/>
+      <use href="#prompt" y="8" fill="url(#dither)"/>
+      <use href="#prompt" fill="#ac3154"/>
     </g>
   </g>
 </svg>
